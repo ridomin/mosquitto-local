@@ -1,0 +1,3 @@
+user:password
+client1:Pass@Word1
+client2:Pass@Word2
