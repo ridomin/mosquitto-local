@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <title>Local Mosquitto Server</title>
 </head>
 <body>
@@ -12,11 +13,20 @@
     <ul>
         <li>1883 - TCP no TLS</li>
         <li>8883 - TCP with TLS</li>
-        <li>8080 - WebSockets no TLS</li>
-        <li>8443 - WebSockets with TLS</li>
+        <li>8884 - TCP with TLS and Client Certs</li>
+        <li>8080 - WebSockets no TLS <a href="javascript:test('8080')">test</a> <span id="res8080"></span></span></li>
+        <li>8443 - WebSockets with TLS <a href="javascript:test('8443')">test</a> <span id="res8443"></span></li>
     </ul>
     To use TLS the client must trust the private CA used to issue the localhost Certificate.
     <br />
     <a href="ca.crt"> Download the RidoFY23CA.pem file</a>
+    <script>
+        function test(port) {
+            var resEl = document.getElementById(`res${port}`);
+            const client = mqtt.connect(`${port==='8080' ? 'ws' : 'wss'}://localhost:${port}/mqtt`, {clientId: 'webclient', username: 'user', password: 'password', reconnectPeriod : 0 })
+            client.on('connect', () => resEl.innerText = "Connection OK")
+            client.on('error', err => resEl.innerText = JSON.stringify(err))
+        }
+    </script>
 </body>
 </html>
