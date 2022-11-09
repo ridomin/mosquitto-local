@@ -12,7 +12,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ridomin/mosquitto-local:dev
     - name: Login to Docker
-      uses: docker/login-action@v1
+      uses: docker/login-action@v2
       with:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.DOCKER_TOKEN }}
