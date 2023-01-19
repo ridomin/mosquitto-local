@@ -51,4 +51,4 @@ Offers a web server with port details, and the ca cert: [http:/localhost:8080] (
 
 ### WebSockets with TLS (8443)
 
-You might need a websockets compatible client, such as [MQTT Browser](https://iotmodels.github.io/pnp-mqtt/)
+You might need a websockets compatible client, such as [IoT UX for MQTT](https://iotmodels.github.io/iotux-mqtt)
